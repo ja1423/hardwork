@@ -1,27 +1,43 @@
 import { Injectable } from '@nestjs/common';
 import { CreateLidDto } from './dto/create-lid.dto';
 import { UpdateLidDto } from './dto/update-lid.dto';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Lid } from './entities/lid.entity';
+import { Repository } from 'typeorm';
 
 @Injectable()
 export class LidService {
-  
+  findOneandUpdate(arg0: number, updateLidDto: UpdateLidDto) {
+    throw new Error('Method not implemented.');
+  }
+  constructor(
+    @InjectRepository(Lid)
+    private readonly lidRepo: Repository<Lid>,
+  ) {}
+
   create(createLidDto: CreateLidDto) {
-    return 'This action adds a new lid';
+    const { first_name,last_name,test_date,test_time } = createLidDto;
+    return this.lidRepo.save({
+      first_name,
+      last_name,
+      test_date,
+      test_time,
+    });
   }
 
   findAll() {
-    return `This action returns all lid`;
+    return this.lidRepo.find();
   }
 
   findOne(id: number) {
-    return `This action returns a #${id} lid`;
+    return this.lidRepo.findOneBy({id});
   }
 
   update(id: number, updateLidDto: UpdateLidDto) {
-    return `This action updates a #${id} lid`;
+    return this.lidRepo.update({id}, updateLidDto);
   }
 
   remove(id: number) {
-    return `This action removes a #${id} lid`;
+    return this.lidRepo.delete({id});
   }
 }

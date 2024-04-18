@@ -1,1 +1,3 @@
-export class LidStage {}
+export class LidStage {
+  lid: any;
+}

@@ -10,7 +10,7 @@ import { ClientsModule, Transport } from '@nestjs/microservices';
     TypeOrmModule.forFeature([Lid]),
     ClientsModule.register([
       {
-        name: 'PRODUCT_SERVICE',
+        name: 'LID_SERVICE',
         transport: Transport.RMQ,
         options: {
           urls: [

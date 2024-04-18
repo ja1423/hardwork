@@ -1,6 +1,8 @@
-import { Column, Entity, ManyToMany, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, JoinColumn, JoinTable, ManyToMany, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
+import { LidStage } from "../../lid_stage/entities/lid_stage.entity";
+import { LidStatus } from "../../lid_status/entities/lid_status.entity";
 
-@Entity()
+@Entity('lid')
 export class Lid {
   @PrimaryGeneratedColumn()
   id: number;
@@ -20,13 +22,13 @@ export class Lid {
   @Column()
   test_time: Date;
 
-  
+ @ManyToOne(()=>LidStage,(lidstage)=>lidstage.lid)
+ lidstage: LidStage
 
-//   @ManyToMany(() => lid_stage, (book) => book.users, {
-//     cascade: true,
-//   })
-//   @JoinTable()
-//   book: Books[];
+
+ @ManyToOne(()=>LidStatus,(lidstatus)=>lidstatus.lidstatus)
+ lidstatus: LidStatus[]
+  lid: any;
 }
 
 
