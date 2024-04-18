@@ -8,6 +8,7 @@ import { ReasonLidModule } from './reason_lid/reason_lid.module';
 import { LidStage } from './lid_stage/entities/lid_stage.entity';
 import { LidStatus } from './lid_status/entities/lid_status.entity';
 import { ReasonLid } from './reason_lid/entities/reason_lid.entity';
+import { TargetModule } from './target/target.module';
 
 
 @Module({
@@ -26,6 +27,7 @@ import { ReasonLid } from './reason_lid/entities/reason_lid.entity';
     LidStageModule,
     LidStatusModule,
     ReasonLidModule,
+    TargetModule,
   ],
   controllers: [],
   providers: [],

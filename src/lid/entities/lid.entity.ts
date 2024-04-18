@@ -2,6 +2,7 @@ import { Column, Entity, JoinColumn, JoinTable, ManyToMany, ManyToOne, PrimaryGe
 import { LidStage } from "../../lid_stage/entities/lid_stage.entity";
 import { LidStatus } from "../../lid_status/entities/lid_status.entity";
 import { ReasonLid } from "../../reason_lid/entities/reason_lid.entity";
+import { Target } from "../../target/entities/target.entity";
 
 @Entity('lid')
 export class Lid {
@@ -32,6 +33,9 @@ export class Lid {
 
   @ManyToOne(() => ReasonLid, (reasonlid) => reasonlid.reason)
   reason: ReasonLid;
+
+  @ManyToOne(() => Target, (target) => target.name)
+  target: Target;
 }
 
 
