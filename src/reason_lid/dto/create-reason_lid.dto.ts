@@ -1,1 +1,3 @@
-export class CreateReasonLidDto {}
+export class CreateReasonLidDto {
+  reason: string;
+}

@@ -1,26 +1,37 @@
 import { Injectable } from '@nestjs/common';
 import { CreateReasonLidDto } from './dto/create-reason_lid.dto';
 import { UpdateReasonLidDto } from './dto/update-reason_lid.dto';
+import { InjectRepository } from '@nestjs/typeorm';
+import { ReasonLid } from './entities/reason_lid.entity';
+import { Repository } from 'typeorm';
 
 @Injectable()
 export class ReasonLidService {
+  findOneandUpdate(arg0: number, updatereasonLidDto: UpdateReasonLidDto) {
+    throw new Error('Method not implemented.');
+  }
+
+
+constructor(@InjectRepository(ReasonLid)private readonly reasonLidRepo:Repository<ReasonLid>){
+
+}
   create(createReasonLidDto: CreateReasonLidDto) {
-    return 'This action adds a new reasonLid';
+    return this.reasonLidRepo.save(createReasonLidDto);
   }
 
   findAll() {
-    return `This action returns all reasonLid`;
+    return this.reasonLidRepo.find();
   }
 
   findOne(id: number) {
-    return `This action returns a #${id} reasonLid`;
+    return this.reasonLidRepo.findOneBy({id});
   }
 
   update(id: number, updateReasonLidDto: UpdateReasonLidDto) {
-    return `This action updates a #${id} reasonLid`;
+    return this.reasonLidRepo.update({id}, updateReasonLidDto);
   }
 
   remove(id: number) {
-    return `This action removes a #${id} reasonLid`;
+    return this.reasonLidRepo.delete({id});
   }
 }

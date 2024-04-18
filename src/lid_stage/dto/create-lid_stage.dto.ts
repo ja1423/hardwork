@@ -1,1 +1,4 @@
-export class CreateLidStageDto {}
+export class CreateLidStageDto {
+    lidstage: string;
+    name: string;
+}

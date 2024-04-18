@@ -1,6 +1,7 @@
 import { Column, Entity, JoinColumn, JoinTable, ManyToMany, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
 import { LidStage } from "../../lid_stage/entities/lid_stage.entity";
 import { LidStatus } from "../../lid_status/entities/lid_status.entity";
+import { ReasonLid } from "../../reason_lid/entities/reason_lid.entity";
 
 @Entity('lid')
 export class Lid {
@@ -22,13 +23,15 @@ export class Lid {
   @Column()
   test_time: Date;
 
- @ManyToOne(()=>LidStage,(lidstage)=>lidstage.lid)
- lidstage: LidStage
+  @ManyToOne(() => LidStage, (lidstage) => lidstage.lidstage)
+  lidstage: LidStage[];
 
-
- @ManyToOne(()=>LidStatus,(lidstatus)=>lidstatus.lidstatus)
- lidstatus: LidStatus[]
+  @ManyToOne(() => LidStatus, (lidstatus) => lidstatus.lidstatus)
+  lidstatus: LidStatus[];
   lid: any;
+
+  @ManyToOne(() => ReasonLid, (reasonlid) => reasonlid.reason)
+  reason: ReasonLid;
 }
 
 
