@@ -15,6 +15,12 @@ import { RoleModule } from './role/role.module';
 import { Stuff } from './stuff/entities/stuff.entity';
 import { StuffRole } from './stuff_role/entities/stuff_role.entity';
 import { Role } from './role/entities/role.entity';
+import { GroupModule } from './group/group.module';
+import { GroupStuffModule } from './group_stuff/group_stuff.module';
+import { BranchModule } from './branch/branch.module';
+import { Branch } from './branch/entities/branch.entity';
+import { Group } from './group/entities/group.entity';
+import { GroupStuff } from './group_stuff/entities/group_stuff.entity';
 
 
 @Module({
@@ -26,7 +32,7 @@ import { Role } from './role/entities/role.entity';
       username: process.env.POSTGRES_USER,
       password: process.env.POSTGRES_PASSWORD,
       database: process.env.POSTGRES_DB,
-      entities: [Lid, LidStage, LidStatus, ReasonLid,Stuff,StuffRole,Role],
+      entities: [Lid, LidStage, LidStatus, ReasonLid,Stuff,StuffRole,Role,Branch,Group,GroupStuff],
       synchronize: true,
     }),
     LidModule,
@@ -37,6 +43,9 @@ import { Role } from './role/entities/role.entity';
     StuffModule,
     StuffRoleModule,
     RoleModule,
+    GroupModule,
+    GroupStuffModule,
+    BranchModule,
   ],
   controllers: [],
   providers: [],

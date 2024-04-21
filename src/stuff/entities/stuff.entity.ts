@@ -1,5 +1,6 @@
 import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 import { StuffRole } from "../../stuff_role/entities/stuff_role.entity";
+import { GroupStuff } from "../../group_stuff/entities/group_stuff.entity";
 
 
 @Entity()
@@ -32,4 +33,8 @@ export class Stuff {
     
     @OneToMany(() => StuffRole, (stuff_role) => stuff_role.stuff_role)
     stuff: StuffRole[];
+
+
+    @OneToMany(() => GroupStuff, (group_stuff) => group_stuff.group_stuff)
+    group_stuff: GroupStuff[];
 }
