@@ -4,6 +4,7 @@ import { RoleController } from './role.controller';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { Role } from './entities/role.entity';
 import { ClientsModule, Transport } from '@nestjs/microservices';
+import { RoleResolver } from './role.resolver';
 
 @Module({
   
@@ -21,7 +22,7 @@ import { ClientsModule, Transport } from '@nestjs/microservices';
       },
     ]),
   ],
-  controllers: [RoleController],
+  controllers: [RoleController,RoleResolver],
   providers: [RoleService],
 })
 export class RoleModule {}

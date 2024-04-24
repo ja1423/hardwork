@@ -4,6 +4,7 @@ import { StuffRoleController } from './stuff_role.controller';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { StuffRole } from './entities/stuff_role.entity';
 import { ClientsModule, Transport } from '@nestjs/microservices';
+import { StuffRoleResolver } from './stuff_role.resolver';
 
 @Module({
   imports:[
@@ -22,7 +23,7 @@ import { ClientsModule, Transport } from '@nestjs/microservices';
   ],
 
   
-  controllers: [StuffRoleController],
+  controllers: [StuffRoleController,StuffRoleResolver],
   providers: [StuffRoleService],
 
 })

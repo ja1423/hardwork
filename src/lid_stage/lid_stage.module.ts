@@ -4,6 +4,7 @@ import { LidStageController } from './lid_stage.controller';
 import { ClientsModule, Transport } from '@nestjs/microservices';
 import { LidStage } from './entities/lid_stage.entity';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { LidStageResolver } from './lid_stage.resolver';
 
 @Module({
   imports: [
@@ -21,7 +22,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
       },
     ]),
   ],
-  controllers: [LidStageController],
+  controllers: [LidStageController,LidStageResolver],
   providers: [LidStageService],
 })
 export class LidStageModule {}

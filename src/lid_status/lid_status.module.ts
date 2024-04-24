@@ -4,6 +4,7 @@ import { LidStatusController } from './lid_status.controller';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { LidStatus } from './entities/lid_status.entity';
 import { ClientsModule, Transport } from '@nestjs/microservices';
+import { LidStatusResolver } from './lid_status.resolver';
 
 @Module({
   imports: [
@@ -24,7 +25,7 @@ import { ClientsModule, Transport } from '@nestjs/microservices';
       },
     ]),
   ],
-  controllers: [LidStatusController],
+  controllers: [LidStatusController,LidStatusResolver],
   providers: [LidStatusService],
 })
 export class LidStatusModule {}

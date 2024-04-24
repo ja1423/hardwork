@@ -4,6 +4,7 @@ import { BranchController } from './branch.controller';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { Branch } from './entities/branch.entity';
 import { ClientsModule, Transport } from '@nestjs/microservices';
+import { BranchResolver } from './branch.resolver';
 
 @Module({
   imports: [
@@ -20,7 +21,7 @@ import { ClientsModule, Transport } from '@nestjs/microservices';
       },
     ]),
   ],
-  controllers: [BranchController],
+  controllers: [BranchController,BranchResolver],
   providers: [BranchService],
 })
 export class BranchModule {}

@@ -1,5 +1,7 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { ConfigModule, ConfigService } from '@nestjs/config';
+
 import { LidModule } from './lid/lid.module';
 import { Lid } from './lid/entities/lid.entity';
 import { LidStageModule } from './lid_stage/lid_stage.module';
@@ -21,20 +23,37 @@ import { BranchModule } from './branch/branch.module';
 import { Branch } from './branch/entities/branch.entity';
 import { Group } from './group/entities/group.entity';
 import { GroupStuff } from './group_stuff/entities/group_stuff.entity';
+import { GraphQLModule } from '@nestjs/graphql';
+import { ApolloDriverConfig, ApolloDriver } from '@nestjs/apollo';
 
 
 @Module({
   imports: [
-    TypeOrmModule.forRoot({
-      type: 'postgres',
-      host: process.env.POSTGRES_HOST,
-      port: Number(process.env.POSTGRES_PORT),
-      username: process.env.POSTGRES_USER,
-      password: process.env.POSTGRES_PASSWORD,
-      database: process.env.POSTGRES_DB,
-      entities: [Lid, LidStage, LidStatus, ReasonLid,Stuff,StuffRole,Role,Branch,Group,GroupStuff],
-      synchronize: true,
+    ConfigModule.forRoot({ envFilePath: '.env', isGlobal: true }),
+    GraphQLModule.forRoot<ApolloDriverConfig>({
+      driver: ApolloDriver,
+      autoSchemaFile:'schema.gql',
+      playground:true,
     }),
+    TypeOrmModule.forRootAsync({
+      imports: [ConfigModule],
+
+      inject: [ConfigService],
+      useFactory: async (config: ConfigService) => ({
+        type: config.get<'postgres'>('TYPEORM_CONNECTION'),
+        host: config.get<string>('TYPEORM_HOST'),
+        port: config.get<number>('TYPEORM_PORT'),
+        username: config.get<string>('TYPEORM_USERNAME'),
+        password: config.get<string>('TYPEORM_PASSWORD'),
+        database: config.get<string>('TYPEORM_DATABASE'),
+        entities: [__dirname + 'dist/**/*.entity{.ts,.js'],
+        synchronize: true,
+        autoLoadEntities: true,
+        logging:true
+
+      }),
+    }),
+   
     LidModule,
     LidStageModule,
     LidStatusModule,

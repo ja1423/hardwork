@@ -4,6 +4,7 @@ import { ReasonLidController } from './reason_lid.controller';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ReasonLid } from './entities/reason_lid.entity';
 import { ClientsModule, Transport } from '@nestjs/microservices';
+import { ReasonLidResolver } from './reason_lid.resolver';
 
 @Module({
   imports: [TypeOrmModule.forFeature([ReasonLid]), ClientsModule.register([{
@@ -16,7 +17,7 @@ import { ClientsModule, Transport } from '@nestjs/microservices';
       queue:'reason_lid_queue',
     },
   }])],
-  controllers: [ReasonLidController],
+  controllers: [ReasonLidController,ReasonLidResolver],
   providers: [ReasonLidService],
 })
 export class ReasonLidModule {}

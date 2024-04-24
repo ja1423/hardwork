@@ -4,6 +4,7 @@ import { GroupStuffController } from './group_stuff.controller';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ClientsModule, Transport } from '@nestjs/microservices';
 import { GroupStuff } from './entities/group_stuff.entity';
+import { GroupStuffResolver } from './group_stuff.resolver';
 
 @Module({
   imports: [
@@ -21,7 +22,7 @@ import { GroupStuff } from './entities/group_stuff.entity';
     ]),
   ],
 
-  controllers: [GroupStuffController],
+  controllers: [GroupStuffController,GroupStuffResolver],
   providers: [GroupStuffService],
 })
 export class GroupStuffModule {}

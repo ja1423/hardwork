@@ -4,6 +4,7 @@ import { TargetController } from './target.controller';
 import { ClientsModule, Transport } from '@nestjs/microservices';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { Target } from './entities/target.entity';
+import { TargetResolver } from './target.resolver';
 
 @Module({
   imports: [
@@ -20,7 +21,7 @@ import { Target } from './entities/target.entity';
       },
     ]),
   ],
-  controllers: [TargetController],
+  controllers: [TargetController,TargetResolver],
   providers: [TargetService],
 })
 export class TargetModule {}
