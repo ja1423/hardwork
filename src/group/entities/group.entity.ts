@@ -2,6 +2,7 @@ import { Column, Entity, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "ty
 import { GroupStuff } from "../../group_stuff/entities/group_stuff.entity";
 import { LidStage } from "../../lid_stage/entities/lid_stage.entity";
 import { Branch } from "../../branch/entities/branch.entity";
+import { Lesson } from "../../lesson/entities/lesson.entity";
 
 
 @Entity()
@@ -36,6 +37,9 @@ export class Group {
 
   @OneToMany(() => GroupStuff, (groupStuff) => groupStuff.group)
   group: GroupStuff[];
+
+  @OneToMany(() => Lesson, (lesson) => lesson.group)
+  lesson: Lesson[];
 
   @ManyToOne(() => LidStage, (lid_stage) => lid_stage.stage)
   stage: LidStage[];

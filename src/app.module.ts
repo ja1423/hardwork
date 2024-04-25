@@ -25,6 +25,12 @@ import { Group } from './group/entities/group.entity';
 import { GroupStuff } from './group_stuff/entities/group_stuff.entity';
 import { GraphQLModule } from '@nestjs/graphql';
 import { ApolloDriverConfig, ApolloDriver } from '@nestjs/apollo';
+import { PaymentModule } from './payment/payment.module';
+import { StudentModule } from './student/student.module';
+import { StudentLessonModule } from './student_lesson/student_lesson.module';
+import { LessonModule } from './lesson/lesson.module';
+import { LessonControllerModule } from './lesson.controller/lesson.controller.module';
+import { LessonModule } from './co/lesson/lesson.module';
 
 
 @Module({
@@ -65,6 +71,11 @@ import { ApolloDriverConfig, ApolloDriver } from '@nestjs/apollo';
     GroupModule,
     GroupStuffModule,
     BranchModule,
+    PaymentModule,
+    StudentModule,
+    StudentLessonModule,
+    LessonModule,
+    LessonControllerModule,
   ],
   controllers: [],
   providers: [],
