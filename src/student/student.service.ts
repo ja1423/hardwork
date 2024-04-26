@@ -1,26 +1,38 @@
 import { Injectable } from '@nestjs/common';
-import { CreateStudentInput } from './dto/create-student.input';
-import { UpdateStudentInput } from './dto/update-student.input';
+import { CreateStudentDto } from './dto/create-student.dto';
+import { UpdateStudentDto } from './dto/update-student.dto';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Student } from './entities/student.entity';
+import { Repository } from 'typeorm';
 
 @Injectable()
 export class StudentService {
-  create(createStudentInput: CreateStudentInput) {
-    return 'This action adds a new student';
+  findOneandUpdate(arg0: number, updateStudentDto: UpdateStudentDto) {
+    throw new Error('Method not implemented.');
+  }
+
+  constructor(
+    @InjectRepository(Student)
+    private readonly studentRepo: Repository<Student>,
+  ) {}
+  create(createStudentDto: CreateStudentDto) {
+    return this.studentRepo.create(createStudentDto);
   }
 
   findAll() {
-    return `This action returns all student`;
+    return this.studentRepo.find();
   }
 
   findOne(id: number) {
-    return `This action returns a #${id} student`;
+    return this.studentRepo.findOne(id
+    );
   }
 
-  update(id: number, updateStudentInput: UpdateStudentInput) {
-    return `This action updates a #${id} student`;
+  update(id: number, updateStudentDto: UpdateStudentDto) {
+    return this.studentRepo.update(id, updateStudentDto);
   }
 
   remove(id: number) {
-    return `This action removes a #${id} student`;
+    return this.studentRepo.delete(id);
   }
 }

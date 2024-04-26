@@ -28,9 +28,12 @@ import { ApolloDriverConfig, ApolloDriver } from '@nestjs/apollo';
 import { PaymentModule } from './payment/payment.module';
 import { StudentModule } from './student/student.module';
 import { StudentLessonModule } from './student_lesson/student_lesson.module';
+import { PaymentModule } from './payment/payment.module';
+import { StudentLessonModule } from './student_lesson/student_lesson.module';
 import { LessonModule } from './lesson/lesson.module';
 import { LessonControllerModule } from './lesson.controller/lesson.controller.module';
 import { LessonModule } from './co/lesson/lesson.module';
+import { StudentModule } from './student/student.module';
 
 
 @Module({
